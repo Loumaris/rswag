@@ -3,7 +3,7 @@ sudo: required
 dist: trusty
 language: ruby
 rvm:
-  - 2.3.1
+  - 2.5.3
 
 notifications:
   email: false
@@ -14,9 +14,8 @@ before_install:
 install: ./ci/build.sh
 
 env:
+  - RAILS_VERSION=6.0.0
   - RAILS_VERSION=5.2.0
-  - RAILS_VERSION=4.2.0
-  - RAILS_VERSION=3.2.22
 
 addons:
   apt:
