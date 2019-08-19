@@ -1,32 +1,30 @@
-language: ruby
 
+sudo: required
+dist: trusty
+language: ruby
 rvm:
-  - 2.5.3
+  - 2.3.1
+
+notifications:
+  email: false
+
+before_install:
+  - gem install bundler -v '~> 1.0'
+
+install: ./ci/build.sh
 
 env:
-  - RAILS_VERSION=6.0.0
   - RAILS_VERSION=5.2.0
   - RAILS_VERSION=4.2.0
   - RAILS_VERSION=3.2.22
 
-cache:
-  directories:
-    - /home/travis/.rvm/gems/ruby-2.2.5
-
 addons:
   apt:
+    sources:
+      - ubuntu-sdk-team
     packages:
-      - libqtwebkit-dev
-
-install: ./ci/build.sh
-
-services:
-  - xvfb
-
-before_script:
-  - "export DISPLAY=:99.0"
-  - "sh -e /etc/init.d/xvfb start"
-  - sleep 3 # give xvfb some time to start
+      - libqt5webkit5-dev
+      - qtdeclarative5-dev
 
 script: ./ci/test.sh
 
